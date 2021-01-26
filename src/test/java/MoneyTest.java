@@ -22,6 +22,11 @@ public class MoneyTest {
     }
 
     @Test
+    void test_dollar_franc_equality() {
+        assertFalse(new Dollar(5).equals(new Franc(5)));
+    }
+
+    @Test
     void test_franc_multiplication() {
         final Franc five = new Franc(5);
 
