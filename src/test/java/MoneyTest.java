@@ -1,4 +1,5 @@
 import com.essexlg.money.Dollar;
+import com.essexlg.money.Franc;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -16,5 +17,13 @@ public class MoneyTest {
     void test_equality() {
         assertTrue(new Dollar(5).equals(new Dollar(5)));
         assertFalse(new Dollar(5).equals(new Dollar(6)));
+    }
+
+    @Test
+    void test_franc_multiplication() {
+        final Franc five = new Franc(5);
+
+        assertEquals(new Franc(10), five.times(2));
+        assertEquals(new Franc(15), five.times(3));
     }
 }
