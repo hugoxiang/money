@@ -1,6 +1,6 @@
 package com.essexlg.money;
 
-public class Money {
+public class Money implements Expression {
     protected final String currency;
     protected int amount;
 
@@ -37,5 +37,9 @@ public class Money {
 
     public Money times(int multiplier) {
         return new Money(amount * multiplier, currency);
+    }
+
+    public Expression plus(Money added) {
+        return Money.dollar(amount + added.amount);
     }
 }
