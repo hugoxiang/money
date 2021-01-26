@@ -1,6 +1,6 @@
 package com.essexlg.money;
 
-public abstract class Money {
+public class Money {
     protected final String currency;
     protected int amount;
 
@@ -20,12 +20,22 @@ public abstract class Money {
     @Override
     public boolean equals(Object o) {
         final Money money = (Money) o;
-        return amount == money.amount && getClass().equals(o.getClass());
+        return amount == money.amount && currency.equals(((Money) o).currency());
     }
-
-    public abstract Money times(int multiplier);
 
     public String currency() {
         return currency;
+    }
+
+    @Override
+    public String toString() {
+        return "Money{" +
+                "currency='" + currency + '\'' +
+                ", amount=" + amount +
+                '}';
+    }
+
+    public Money times(int multiplier) {
+        return new Money(amount * multiplier, currency);
     }
 }
