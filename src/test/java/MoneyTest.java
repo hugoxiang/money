@@ -1,4 +1,3 @@
-import com.essexlg.money.Dollar;
 import com.essexlg.money.Money;
 import org.junit.jupiter.api.Test;
 
@@ -17,8 +16,6 @@ public class MoneyTest {
     void test_equality() {
         assertTrue(Money.dollar(5).equals(Money.dollar(5)));
         assertFalse(Money.dollar(5).equals(Money.dollar(6)));
-        assertTrue(Money.franc(5).equals(Money.franc(5)));
-        assertFalse(Money.franc(5).equals(Money.franc(6)));
     }
 
     @Test
@@ -38,10 +35,5 @@ public class MoneyTest {
     void test_currency() {
         assertEquals("USD", Money.dollar(1).currency());
         assertEquals("CHF", Money.franc(1).currency());
-    }
-
-    @Test
-    void test_differenct_class_equality() {
-        assertTrue(new Money(10, "USD").equals(new Dollar(10, "USD")));
     }
 }
