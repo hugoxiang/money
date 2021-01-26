@@ -1,6 +1,7 @@
 import com.essexlg.money.Bank;
 import com.essexlg.money.Expression;
 import com.essexlg.money.Money;
+import com.essexlg.money.Sum;
 import org.junit.jupiter.api.Test;
 
 
@@ -47,5 +48,31 @@ public class MoneyTest {
         final Bank bank = new Bank();
         Money reduced = bank.reduce(sum, "USD");
         assertEquals(Money.dollar(10), reduced);
+    }
+
+    @Test
+    void test_plus_return_sum() {
+        final Money five = Money.dollar(5);
+        final Expression expr = five.plus(five);
+        final Sum sum = (Sum) expr;
+
+        assertEquals(Money.dollar(5), sum.augend);
+        assertEquals(Money.dollar(5), sum.addend);
+    }
+
+    @Test
+    void test_reduce_sum() {
+        final Sum sum = new Sum(Money.dollar(4), Money.dollar(3));
+
+        final Bank bank = new Bank();
+        final Money usd = bank.reduce(sum, "USD");
+        assertEquals(Money.dollar(7), usd);
+    }
+
+    @Test
+    void test_reduce_money() {
+        final Bank bank = new Bank();
+        final Money reduced = bank.reduce(Money.dollar(1), "USD");
+        assertEquals(Money.dollar(1), reduced);
     }
 }
